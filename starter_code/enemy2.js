@@ -18,18 +18,23 @@ function ObstacleEnemy(game){
 
 
 
-ObstacleEnemy.prototype.draw = function() {
+ObstacleEnemy.prototype.drawEnemy = function() {
   this.game.ctx.fillStyle = "red";
   this.game.ctx.fillRect(this.x, this.y, this.w, this.h);
 }
 
-ObstacleEnemy.prototype.move = function() {
+ObstacleEnemy.prototype.moveEnemy = function() {
 
-  
+
   
     this.y += this.dy;
   };
 
+  ObstacleEnemy.prototype.clearEnemy = function() {
+    this.game.obstacleEnemy = this.game.obstacleEnemy.filter(function(o) {
+      return o.y > 0;
+    })
+  };
 
 
 
