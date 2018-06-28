@@ -4,6 +4,8 @@ function Game(canvasId) {
 
   this.framesCounter = 0;
   this.framesTime = 0;
+  this.difficulty = 80;
+  
   this.reset();
 
   //this.maxLife = false;
@@ -22,32 +24,30 @@ Game.prototype.start = function() {
       this.score.points++;
       this.move();
       this.draw();
-      console.log(this.isCollision())
-      if(this.isCollision()){
-        console.log('collision!')
-      }
+      console.log(this.difficulty);
+      this.difficultygen();
       this.updateObs();
 
       // for(i=0;i<this.obstacleEnemy.length;i++){
       //   o.drawEnemy();
       //   o.moveEnemy();
       // }
+      
+      // if (this.framesTime < 1000) {
+       if (this.framesCounter % this.difficulty === 0) {
+         
+           this.generateEnemy();
+        }
+      // } else if (this.framesTime > 1000) {
+      //   //this.maxLife = true;
+      //   //this.score.drawLevel();
 
-      if (this.framesTime < 1000) {
-        
-        if (this.framesCounter % 50 === 0) {
-          this.generateEnemy();
-        }
-      } else if (this.framesTime > 1000) {
-        //this.maxLife = true;
-        //this.score.drawLevel();
-
-        if (this.framesCounter % 40 === 0) {
-          this.generateEnemy();
-        }
-        if (this.framesCounter % 1000 === 0) {
-        }
-      }
+      //   if (this.framesCounter % 40 === 0) {
+      //     this.generateEnemy();
+      //   }
+      //   if (this.framesCounter % 1000 === 0) {
+      //   }
+      // }
 
       if (this.score.lives == 0) {
         this.gameOver();
@@ -58,15 +58,18 @@ Game.prototype.start = function() {
   );
 };
 
-Game.prototype.init = function() {
-  this.background = new Background(this);
-  this.player = new Player(this);
-  this.score = new Score(this);
+//------Difficulty-----//
+Game.prototype.difficultygen = function () {
+  if (this.score.points % 70 == 0) {
+    
+    this.difficulty = this.difficulty - 10 ; 
+  }
+  if (this.difficulty < 30) {
+    this.difficulty = 30
+    
+  }
 
-  this.obstacles = [];
-  this.obstacleEnemy = [];
-  this.obstacleNumber = 6;
-};
+}
 
 //------Clear------//
 Game.prototype.clear = function() {
@@ -78,8 +81,6 @@ Game.prototype.clear = function() {
   //   e.clearEnemy();
   // });
 };
-
-
 
 //Generate//
 
@@ -140,6 +141,7 @@ Game.prototype.reset = function() {
   this.framesCounter = 0;
   this.framesTime = 0;
   this.obstacleNumber = 6;
+  this.difficulty = 80;
   this.generateObstacle();
 };
 
@@ -147,6 +149,10 @@ Game.prototype.reset = function() {
 
 Game.prototype.gameOver = function() {
   this.stop();
+  if (confirm("GAME OVER. Play again?")) {
+    this.reset();
+    this.start();
+  }
 };
 
 Game.prototype.updateObs = function() {
@@ -173,36 +179,27 @@ Game.prototype.updateObs = function() {
       if (this.obstacleNumber > 20) {
         this.obstacleNumber = 20;
         this.obstacles.pop();
-        console.log(this.obstacles);
+       
       }
-      // if (
-      //   this.player.x < this.obstacleEnemy[i].x + this.obstacleEnemy[i].w &&
-      // this.player.x + this.player.w > this.obstacleEnemy[i].x &&
-      // this.player.y < this.obstacleEnemy[i].y + this.obstacleEnemy[i].h &&
-      // this.player.h + this.player.y > this.obstacleEnemy[i].y
-      // ) {
-      //   console.log("daadad") 
-      // }
-      
+
       //enemy collision
 
       //console.log(this.obstacles)
     }
   }
+  for (j = 0; j < this.obstacleEnemy.length; j++) {
 
-};
-
-Game.prototype.isCollision = function() {
-  return this.obstacles.some(
-    function(obstacle) {
-      return (
-        this.player.x < obstacle.x + obstacle.w &&
-        this.player.x + this.player.w > obstacle.x &&
-        this.player.y < obstacle.y + obstacle.h &&
-        this.player.h + this.player.y > obstacle.y
-      );
-      {
-      }
-    }.bind(this)
-  );
+    if (
+      this.player.x < this.obstacleEnemy[j].x + this.obstacleEnemy[j].w &&
+      this.player.x + this.player.w > this.obstacleEnemy[j].x &&
+      this.player.y < this.obstacleEnemy[j].y + this.obstacleEnemy[j].h &&
+      this.player.h + this.player.y > this.obstacleEnemy[j].y
+    ) {
+      this.obstacleEnemy.splice(j,1)
+      
+      this.score.lives -= 5;
+      
+      
+    }
+  }
 };
