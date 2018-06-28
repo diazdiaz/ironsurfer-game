@@ -2,12 +2,12 @@ function Player(game) {
   this.game = game;
 
   this.img = new Image();
-  this.img.src = "";
+  this.img.src = "images/surfboard clipart.png";
 
   this.x = 300;
-  this.y = this.game.canvas.height - 30; //750
+  this.y = 690; //750
   
-  this.w = 50;
+  this.w = 80;
   this.h = 75;
 
   
@@ -34,8 +34,13 @@ function Player(game) {
 }
 
  
-Player.prototype.draw = function() {
-  this.game.ctx.fillRect(this.x, this.y, 50, this.y);
+Player.prototype.draw =  function() {
+  this.game.ctx.drawImage(
+    this.img,
+    this.x,
+    this.y,
+    this.w,
+    this.h)
 };
 
 Player.prototype.setListener = function () {

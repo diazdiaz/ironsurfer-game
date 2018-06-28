@@ -19,6 +19,7 @@ Game.prototype.start = function() {
       this.clear();
       this.framesCounter++;
       this.framesTime++;
+      this.score.points++;
       this.move();
       this.draw();
       console.log(this.isCollision())
@@ -78,20 +79,7 @@ Game.prototype.clear = function() {
   // });
 };
 
-//------Collision-----//
-Game.prototype.isCollision = function() {
-  return this.obstacleEnemy.some(
-    function(obstacleEnemy) {
-      console.log(this.obstacleEnemy[i].x)
-      return (
-        this.player.x < this.obstacleEnemy[i].x + this.obstacleEnemy[i].w &&
-        this.player.x + this.player.w > this.obstacleEnemy[i].x &&
-        this.player.y < this.obstacleEnemy[i].y + this.obstacleEnemy[i].h &&
-        this.player.h + this.player.y > this.obstacleEnemy[i].y
-      );
-    }.bind(this)
-  );
-};
+
 
 //Generate//
 
@@ -187,10 +175,21 @@ Game.prototype.updateObs = function() {
         this.obstacles.pop();
         console.log(this.obstacles);
       }
+      // if (
+      //   this.player.x < this.obstacleEnemy[i].x + this.obstacleEnemy[i].w &&
+      // this.player.x + this.player.w > this.obstacleEnemy[i].x &&
+      // this.player.y < this.obstacleEnemy[i].y + this.obstacleEnemy[i].h &&
+      // this.player.h + this.player.y > this.obstacleEnemy[i].y
+      // ) {
+      //   console.log("daadad") 
+      // }
+      
+      //enemy collision
 
       //console.log(this.obstacles)
     }
   }
+
 };
 
 Game.prototype.isCollision = function() {
