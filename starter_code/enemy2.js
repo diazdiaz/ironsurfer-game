@@ -1,8 +1,8 @@
 function ObstacleEnemy(game) {
   this.game = game;
 
-  this.imgshark = new Image ();
-  this.imgshark.src = "./images/cart-4.png";
+  // this.imgshark = new Image ();
+  // this.imgshark.src = "./images/cart-4.png";
 
   this.w = 30;
   this.h = 20;
@@ -16,20 +16,20 @@ function ObstacleEnemy(game) {
 }
 
 
-ObstacleEnemy.prototype.draw = function() {
-  this.game.ctx.drawImage(
-    this.img,
-    this.x,
-    this.y,
-    this.w,
-    this.h)
-};
-
-
-// ObstacleEnemy.prototype.drawEnemy = function() {
-//   this.game.ctx.fillStyle = "red";
-//   this.game.ctx.fillRect(this.x, this.y, this.w, this.h);
+// ObstacleEnemy.prototype.draw = function() {
+//   this.game.ctx.drawImage(
+//     this.img,
+//     this.x,
+//     this.y,
+//     this.w,
+//     this.h)
 // };
+
+
+ObstacleEnemy.prototype.drawEnemy = function() {
+  this.game.ctx.fillStyle = "red";
+  this.game.ctx.fillRect(this.x, this.y, this.w, this.h);
+};
 
 ObstacleEnemy.prototype.moveEnemy = function() {
   this.y += this.dy;
