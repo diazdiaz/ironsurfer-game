@@ -4,7 +4,7 @@ function Game(canvasId) {
 
   this.framesCounter = 0;
   this.framesTime = 0;
-  this.difficulty = 80;
+  this.difficulty = 300;
   
   this.reset();
 
@@ -60,9 +60,9 @@ Game.prototype.start = function() {
 
 //------Difficulty-----//
 Game.prototype.difficultygen = function () {
-  if (this.score.points % 70 == 0) {
+  if (this.score.points % 200 == 0) {
     
-    this.difficulty = this.difficulty - 10 ; 
+    this.difficulty = this.difficulty - 40 ; 
   }
   if (this.difficulty < 30) {
     this.difficulty = 30
@@ -141,7 +141,7 @@ Game.prototype.reset = function() {
   this.framesCounter = 0;
   this.framesTime = 0;
   this.obstacleNumber = 6;
-  this.difficulty = 80;
+  this.difficulty = 300;
   this.generateObstacle();
 };
 

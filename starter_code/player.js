@@ -19,16 +19,13 @@ function Player(game) {
   this.vx = 1;
   this.vy = 1;
 
-  this.ax = 5;
-  this.ay = 5;
+  this.ax = 8;
+  this.ay = 8;
 
   this.setListener()
 
   
   
-  //this.img.frames = 3;
-  //this.img.frameIndex = 0;
-
 
 
 }
