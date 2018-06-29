@@ -1,6 +1,9 @@
 window.onload = function() {
-  var game = new Game("canvas");
-
-  game.start();
+  document.getElementById("empieza").onclick = function() {
+   var game = new Game("canvas");
+   document.getElementById("start").style.display = "none"
+   game.start()
+   
+   
+  }
 };
-

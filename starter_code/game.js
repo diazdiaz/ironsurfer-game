@@ -148,11 +148,20 @@ Game.prototype.reset = function() {
 //----Game Over---
 
 Game.prototype.gameOver = function() {
+  document.getElementById("game-over").style.display = "flex";
+  //document.querySelector("btn-1").style.display = "none";
   this.stop();
-  if (confirm("GAME OVER. Play again?")) {
-    this.reset();
-    this.start();
+  this.newEvent();
+
+};
+
+Game.prototype.newEvent = function() {
+
+   document.onkeydown = function (event) {
+  if (event.keyCode == 32) {
+    window.location.reload();
   }
+}
 };
 
 Game.prototype.updateObs = function() {
