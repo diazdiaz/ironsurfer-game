@@ -24,13 +24,8 @@ function Player(game) {
 
   this.setListener()
 
-  
-  
-
-
 }
 
- 
 Player.prototype.draw =  function() {
   this.game.ctx.drawImage(
     this.img,

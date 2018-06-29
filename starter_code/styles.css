@@ -3,27 +3,20 @@
   margin: 0;
 }
 
-/* .container {
-  display: none;
 
-} */
+
+body {
+  background-image:url("./images/Cartoon-Beach-Wallpaper.jpg")
+}
 
 #canvas {
   border: 2px solid red;
   width:100%;
-
-  
+  max-height: 100vh;
+ 
 }
 
-.col-sm-2 img {
-  width:100%;
-  height:100%;
 
-}
-/* 
-.jumbotron {
-  width: 100%
-} */
 
 
 #game-over {
@@ -39,6 +32,7 @@
   flex-direction: column;
   justify-content:center;
   align-items: center;
+  max-height: 100vh;
 }
 
 #start {
@@ -55,5 +49,7 @@
   justify-content:center;
   align-items: center;
   z-index: 8;
+  max-height: 100vh;
 }
+
 

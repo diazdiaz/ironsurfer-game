@@ -74,12 +74,7 @@ Game.prototype.difficultygen = function () {
 //------Clear------//
 Game.prototype.clear = function() {
   this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-  //this.obstacles.forEach(function(e) {
-  //e.clearObstacles();????? HACE FALTA?
-  // });
-  // this.obstacleEnemy.forEach(function(e) {
-  //   e.clearEnemy();
-  // });
+
 };
 
 //Generate//
@@ -129,7 +124,7 @@ Game.prototype.reset = function() {
   this.background = new Background(this);
   this.player = new Player(this);
   this.score = new Score(this);
-  this.soundcrash = new Audio("/sounds/nutfall.flac");
+  this.soundcrash = new Audio("./sounds/crash1.mp3");
   this.score.points = 0;
   this.score.lives = 100;
   this.obstacles = [];
@@ -149,7 +144,7 @@ Game.prototype.reset = function() {
 
 Game.prototype.gameOver = function() {
   document.getElementById("game-over").style.display = "flex";
-  //document.querySelector("btn-1").style.display = "none";
+
   this.stop();
   this.newEvent();
 
@@ -184,7 +179,7 @@ Game.prototype.updateObs = function() {
       this.obstacles.push(new Obstacle(this));
       this.obstacleNumber++;
       this.score.lives -= 5;
-      this.soundcrash
+      this.soundcrash.play();
       // console.log(this.score.health)
       if (this.obstacleNumber > 20) {
         this.obstacleNumber = 20;
@@ -192,9 +187,6 @@ Game.prototype.updateObs = function() {
        
       }
 
-      //enemy collision
-
-      //console.log(this.obstacles)
     }
   }
   for (j = 0; j < this.obstacleEnemy.length; j++) {
@@ -208,7 +200,7 @@ Game.prototype.updateObs = function() {
       this.obstacleEnemy.splice(j,1)
       
       this.score.lives -= 5;
-      
+      this.soundcrash.play();
       
     }
   }
